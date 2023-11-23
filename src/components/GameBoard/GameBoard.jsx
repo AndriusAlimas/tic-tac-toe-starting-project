@@ -15,18 +15,6 @@ export default function GameBoard({ onSelectCell, gameTurns }) {
     gameBoard[row][column] = player;
   }
 
-  // const [gameBoard, setGameBoard] = useState(initialGameBoard);
-
-  // const handleClickCell = (rowIndex, columnIndex) => {
-  //   setGameBoard((prevGameBoard) => {
-  //     const updatedGameBoard = [
-  //       ...prevGameBoard.map((innerArray) => [...innerArray]),
-  //     ];
-  //     updatedGameBoard[rowIndex][columnIndex] = playerSymbol;
-  //     return updatedGameBoard;
-  //   });
-  //   onSelectCell();
-  // };
   return (
     <ol id="game-board">
       {gameBoard.map((row, rowIndex) => (
