@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "./gameBoard.css";
 const initialGameBoard = [
   [null, null, null],
@@ -6,19 +5,28 @@ const initialGameBoard = [
   [null, null, null],
 ];
 
-export default function GameBoard({ onSelectCell, playerSymbol }) {
-  const [gameBoard, setGameBoard] = useState(initialGameBoard);
+export default function GameBoard({ onSelectCell, gameTurns }) {
+  let gameBoard = initialGameBoard;
 
-  const handleClickCell = (rowIndex, columnIndex) => {
-    setGameBoard((prevGameBoard) => {
-      const updatedGameBoard = [
-        ...prevGameBoard.map((innerArray) => [...innerArray]),
-      ];
-      updatedGameBoard[rowIndex][columnIndex] = playerSymbol;
-      return updatedGameBoard;
-    });
-    onSelectCell();
-  };
+  for (const gameTurn of gameTurns) {
+    const { cell, player } = gameTurn;
+    const { row, column } = cell;
+
+    gameBoard[row][column] = player;
+  }
+
+  // const [gameBoard, setGameBoard] = useState(initialGameBoard);
+
+  // const handleClickCell = (rowIndex, columnIndex) => {
+  //   setGameBoard((prevGameBoard) => {
+  //     const updatedGameBoard = [
+  //       ...prevGameBoard.map((innerArray) => [...innerArray]),
+  //     ];
+  //     updatedGameBoard[rowIndex][columnIndex] = playerSymbol;
+  //     return updatedGameBoard;
+  //   });
+  //   onSelectCell();
+  // };
   return (
     <ol id="game-board">
       {gameBoard.map((row, rowIndex) => (
@@ -26,7 +34,7 @@ export default function GameBoard({ onSelectCell, playerSymbol }) {
           <ol>
             {row.map((playerSymbol, columnIndex) => (
               <li key={columnIndex}>
-                <button onClick={() => handleClickCell(rowIndex, columnIndex)}>
+                <button onClick={() => onSelectCell(rowIndex, columnIndex)}>
                   {playerSymbol}
                 </button>
               </li>
