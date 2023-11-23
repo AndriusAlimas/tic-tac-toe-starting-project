@@ -1,12 +1,12 @@
 import { useState } from "react";
-
+import "./gameBoard.css";
 const initialGameBoard = [
   [null, null, null],
   [null, null, null],
   [null, null, null],
 ];
 
-export default function GameBoard() {
+export default function GameBoard({ onSelectCell, playerSymbol }) {
   const [gameBoard, setGameBoard] = useState(initialGameBoard);
 
   const handleClickCell = (rowIndex, columnIndex) => {
@@ -14,9 +14,10 @@ export default function GameBoard() {
       const updatedGameBoard = [
         ...prevGameBoard.map((innerArray) => [...innerArray]),
       ];
-      updatedGameBoard[rowIndex][columnIndex] = "0";
+      updatedGameBoard[rowIndex][columnIndex] = playerSymbol;
       return updatedGameBoard;
     });
+    onSelectCell();
   };
   return (
     <ol id="game-board">

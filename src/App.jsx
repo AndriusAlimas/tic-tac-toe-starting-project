@@ -7,18 +7,19 @@ function App() {
   const [activePlayer, setActivePlayer] = useState("X");
 
   const handleSelectCell = () => {
-    setActivePlayer((currentActivePlayer) =>
-      currentActivePlayer === "X" ? "O" : "X"
-    );
+    setActivePlayer((activePlayer) => (activePlayer === "X" ? "O" : "X"));
   };
   return (
     <main>
       <div id="game-container">
-        <ol id="players">
-          <Player name="Andrius" symbol="O" />
-          <Player name="Tom" />
+        <ol id="players" className="highlight-player">
+          <Player name="Andrius" symbol="X" isActive={activePlayer === "X"} />
+          <Player name="Tom" symbol="O" isActive={activePlayer === "O"} />
         </ol>
-        <GameBoard />
+        <GameBoard
+          playerSymbol={activePlayer}
+          onSelectCell={handleSelectCell}
+        />
       </div>
       LOG
     </main>
