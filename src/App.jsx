@@ -4,7 +4,7 @@ import GameBoard from "./components/gameBoard/GameBoard";
 import Player from "./components/player/Player";
 import Log from "./components/log/Log";
 import deriveActivePlayer from "./utils/deriveActivePlayer";
-
+import { WINNING_COMBINATIONS } from "./utils/winning-combinations";
 function App() {
   const [gameTurns, setGameTurns] = useState([]);
   const activePlayer = deriveActivePlayer(gameTurns);
