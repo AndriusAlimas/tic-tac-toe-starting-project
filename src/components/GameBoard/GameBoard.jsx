@@ -1,23 +1,9 @@
 import "./gameBoard.css";
-const initialGameBoard = [
-  [null, null, null],
-  [null, null, null],
-  [null, null, null],
-];
 
-export default function GameBoard({ onSelectCell, gameTurns }) {
-  let gameBoard = initialGameBoard;
-
-  for (const gameTurn of gameTurns) {
-    const { cell, player } = gameTurn;
-    const { row, column } = cell;
-
-    gameBoard[row][column] = player;
-  }
-
+export default function GameBoard({ onSelectCell, boardGame }) {
   return (
     <ol id="game-board">
-      {gameBoard.map((row, rowIndex) => (
+      {boardGame.map((row, rowIndex) => (
         <li key={rowIndex}>
           <ol>
             {row.map((playerSymbol, columnIndex) => (
