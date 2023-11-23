@@ -1,7 +1,16 @@
-import GameBoard from "./components/GameBoard/GameBoard";
-import Player from "./components/Player/Player";
+import { useState } from "react";
+
+import GameBoard from "./components/gameBoard/GameBoard";
+import Player from "./components/player/Player";
 
 function App() {
+  const [activePlayer, setActivePlayer] = useState("X");
+
+  const handleSelectCell = () => {
+    setActivePlayer((currentActivePlayer) =>
+      currentActivePlayer === "X" ? "O" : "X"
+    );
+  };
   return (
     <main>
       <div id="game-container">
